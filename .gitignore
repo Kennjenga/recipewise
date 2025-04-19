@@ -1,0 +1,10 @@
+.qodo
+
+.env
+./*/.env
+venv
+./*/venv
+backend/__pycache__/main.cpython-312.pyc
+backend/models/__pycache__/recipe_request.cpython-312.pyc
+backend/routers/__pycache__/recipes.cpython-312.pyc
+backend/utils/__pycache__/llm_integration.cpython-312.pyc

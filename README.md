@@ -17,6 +17,8 @@ Recipe Wizard is a web application designed to help you discover recipes tailore
 ## Tech Stack
 
 - **Frontend Framework:** [Next.js](https://nextjs.org/)
+- **Backend:** FastAPi
+- **AI API:** Gemini
 - **UI Library:** Tailwind CSS
 - **State Management:** React useState
 - **Icon Library:** Lucide React

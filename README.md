@@ -23,9 +23,6 @@ Recipe Wizard is a web application designed to help you discover recipes tailore
 - **State Management:** React useState
 - **Icon Library:** Lucide React
 
-## Screenshots
-
-Here's a glimpse of the Recipe Wizard interface:
 
 ## How to Run the Frontend
 

@@ -10,7 +10,7 @@ interface Recipe {
   substitutions_and_tips: string;
 }
 
-const HomePage = () => {
+const Home = () => {
   const [dietaryRestrictions, setDietaryRestrictions] = useState<string[]>([]);
   const [customRestriction, setCustomRestriction] = useState("");
   const [availableIngredients, setAvailableIngredients] = useState<string[]>(
@@ -385,4 +385,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default Home;

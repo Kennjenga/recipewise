@@ -17,13 +17,12 @@ Recipe Wizard is a web application designed to help you discover recipes tailore
 ## Tech Stack
 
 - **Frontend Framework:** [Next.js](https://nextjs.org/)
+- **Backend:** FastAPi
+- **AI API:** Gemini
 - **UI Library:** Tailwind CSS
 - **State Management:** React useState
 - **Icon Library:** Lucide React
 
-## Screenshots
-
-Here's a glimpse of the Recipe Wizard interface:
 
 ## How to Run the Frontend
 
@@ -63,7 +62,6 @@ _IMPORTANT: This frontend application requires a separate backend server to func
 
 ![Recipe Wizard Backend Overview](./recipe-wizard/public/recipe-backend.png)
 
-- The backend server is not included in this repository.
 - Ensure the backend server is running and accessible at `http://localhost:8000`. (This is the default API endpoint used by the frontend.)
 - The backend should be set up to receive POST requests at the `/recipes/recommend` endpoint.
 - The backend should accept a JSON payload with `dietary_restrictions` (an array or null) and `available_ingredients` (an array or null).

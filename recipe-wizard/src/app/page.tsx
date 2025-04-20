@@ -74,7 +74,11 @@ const Home = () => {
     setLoading(true);
     setError(null);
     try {
-      // const response = await fetch("http://localhost:8000/recipes/recommend", {
+      // Add a small delay to showcase the animation (remove in production)
+      if (process.env.NODE_ENV === "development") {
+        await new Promise((resolve) => setTimeout(resolve, 3000));
+      }
+
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_SERVER}/recipes/recommend`,
         {
@@ -97,14 +101,13 @@ const Home = () => {
       }
 
       const data = await response.json();
-      // Check if 'recommendations' exists and is an array.
       if (data && Array.isArray(data.recommendations)) {
         setRecipes(data.recommendations);
       } else {
         setError(
           "Invalid response format: 'recommendations' array is missing or not an array."
         );
-        setRecipes([]); // Set to empty array to avoid errors in rendering
+        setRecipes([]);
       }
     } catch (e: unknown) {
       if (e instanceof Error) {
@@ -126,7 +129,7 @@ const Home = () => {
       <div className="max-w-4xl w-full p-8 bg-white rounded-xl shadow-2xl">
         <div className="flex items-center justify-center mb-6 text-purple-600">
           <ChefHat className="w-10 h-10 mr-3" />
-          <h1 className="text-4xl font-bold ">Recipe Wizard</h1>
+          <h1 className="text-4xl font-bold">Recipe Wizard</h1>
         </div>
 
         <p className="text-gray-600 mb-8 text-center max-w-2xl mx-auto">
@@ -247,28 +250,42 @@ const Home = () => {
           disabled={loading}
         >
           {loading ? (
-            <div className="flex items-center justify-center">
-              <svg
-                className="animate-spin -ml-1 mr-3 h-6 w-6 text-white"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <circle
-                  className="opacity-25"
-                  cx="12"
-                  cy="12"
-                  r="10"
-                  stroke="currentColor"
-                  strokeWidth="4"
-                ></circle>
-                <path
-                  className="opacity-75"
-                  fill="currentColor"
-                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                ></path>
-              </svg>
-              Creating Your Magic Menu...
+            <div className="flex flex-col items-center justify-center">
+              {/* Cooking Animation */}
+              <div className="relative w-24 h-24 mb-4">
+                {/* Pot */}
+                <div className="absolute bottom-0 w-full h-16 bg-gray-700 rounded-b-full overflow-hidden">
+                  {/* Steam animations */}
+                  <div className="absolute left-4 bottom-full">
+                    <div className="w-2 h-8 bg-white rounded-full opacity-70 animate-steam-1"></div>
+                  </div>
+                  <div className="absolute left-10 bottom-full">
+                    <div className="w-2 h-8 bg-white rounded-full opacity-70 animate-steam-2"></div>
+                  </div>
+                  <div className="absolute right-6 bottom-full">
+                    <div className="w-2 h-8 bg-white rounded-full opacity-70 animate-steam-3"></div>
+                  </div>
+
+                  {/* Soup/contents */}
+                  <div className="absolute bottom-0 w-full h-12 bg-orange-300 overflow-hidden">
+                    {/* Bubbling effect */}
+                    <div className="absolute left-3 top-2 w-3 h-3 bg-orange-200 rounded-full animate-bubble-1"></div>
+                    <div className="absolute left-12 top-5 w-2 h-2 bg-orange-200 rounded-full animate-bubble-2"></div>
+                    <div className="absolute right-5 top-3 w-4 h-4 bg-orange-200 rounded-full animate-bubble-3"></div>
+                  </div>
+                </div>
+
+                {/* Pot handles */}
+                <div className="absolute left-0 top-6 w-2 h-8 bg-gray-500 rounded-l-full"></div>
+                <div className="absolute right-0 top-6 w-2 h-8 bg-gray-500 rounded-r-full"></div>
+
+                {/* Pot lid */}
+                <div className="absolute top-0 left-2 right-2 h-4 bg-gray-600 rounded-t-full"></div>
+                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-gray-800 rounded-full"></div>
+              </div>
+              <p className="text-white font-medium">
+                Creating Your Magic Menu...
+              </p>
             </div>
           ) : (
             "Cook Up Some Suggestions!"

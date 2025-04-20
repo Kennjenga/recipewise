@@ -74,18 +74,22 @@ const HomePage = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch("http://localhost:8000/recipes/recommend", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          dietary_restrictions:
-            dietaryRestrictions.length > 0 ? dietaryRestrictions : null,
-          available_ingredients:
-            availableIngredients.length > 0 ? availableIngredients : null,
-        }),
-      });
+      // const response = await fetch("http://localhost:8000/recipes/recommend", {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER}/recipes/recommend`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            dietary_restrictions:
+              dietaryRestrictions.length > 0 ? dietaryRestrictions : null,
+            available_ingredients:
+              availableIngredients.length > 0 ? availableIngredients : null,
+          }),
+        }
+      );
 
       if (!response.ok) {
         const errorData = await response.json();
